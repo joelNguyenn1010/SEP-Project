@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title>Edit Item</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+		<img src="UTS_Logo.png" alt="UTS Logo" height="36" width="85">
+		<f>Stationary Management System</f>
+	</header>
+
+	<nav>
+    <a href="view_catalogue.html">View Catalogue</a>
+    <a href="/librarian/stationery/new">Add Item</a>
+    <a href="/librarian/stationery/edit">Edit Item</a>
+    <a href="/librarian/stationery/destroy">Remove Item</a>
+  </nav>
+
+  <br/>
+  <br/>
+
+  <div class="itemForm">
+
+    <h1>Edit Existing Item</h1>
+
+    <div class="container">
+      <label for="barcode"><b>Item ID</b></label>
+      <br/>
+      <input id="itemID" type="text" placeholder="ID" name="itemID" required>
+    </div>
+
+    <div class="container">
+      <label for="itemName"><b>Item Name</b></label>
+      <br>
+      <input id="itemName" type="text" placeholder="Name" name="itemName" required>
+    </div>
+
+		<div class="container">
+      <label for="itemQuantity"><b>Quantity</b></label>
+      <br>
+      <input id="itemQuantity" type="text" placeholder="Quantity" name="itemQuantity" required>
+    </div>
+
+		<div class="container">
+      <label for="itemImage"><b>Image URL</b></label>
+      <br>
+      <input id="itemImage" type="text" placeholder="URL" name="itemImage" required>
+    </div>
+
+    <br/>
+    <br/>
+
+    <button class="button" type="submit" onclick="editItem()">Edit Item</button>
+
+  </div>
+
+	<div id="popUp" class="popUp">
+  	<div class="popUp-content">
+    	<span class="close" onclick="closePopUp()">&times;</span>
+    	<p id="popUpMessage">Stand in PopUp Message</p>
+			<br/>
+			<img id="itemImagePopUp" class="center" src="" alt="Invalid Image URL"/>
+  	</div>
+	</div>
+
+	<script src="closePopUp.js"></script>
+  <script src="editItems.js"></script>
+</body>

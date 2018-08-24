@@ -1,0 +1,45 @@
+<% include ../partials/header%>
+
+    <div class='contatiner'>
+  <% items.forEach(function(item){ %>
+    <div class="box-item">
+
+    <p><%= item.name %> </p>
+    <p><%= item.quantity %> </p>
+    <p><%= item.desciption %> </p>
+    <img src="<%=item.picture%>">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#From<%= item.stationary_id %>">
+        Edit
+      </button>
+      <div class="modal fade" id="From<%= item.stationary_id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Edit<%=item.name%></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="" action="/librarian/stationary/<%=item.stationary_id%>?_method=PUT" method="POST">
+                  <input type="text" name="stationaryName" value="<%=item.name%>">
+                  <input type="text" name="stationaryQuality" value="<%=item.name%>">
+                  <input type="number" name="stationaryQuantity" value="<%=item.name%>">
+                  <input type="text" name="stationaryDesciption" value="<%=item.name%>">
+                  <input type="text" name="stationaryName" value="<%=item.name%>">
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-primary" value="Confirm">
+              </form>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+<%  }); %>
+    </div>
+
+<% include ../partials/footer %>

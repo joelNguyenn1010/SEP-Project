@@ -1,0 +1,84 @@
+<% include ../partials/header.ejs %>
+	<header>
+		<img src="/icons/UTS_Logo.png" alt="UTS Logo" height="36" width="85">
+		<f>Stationary Management System</f>
+	</header>
+
+  <nav>
+    <a href="view_catalogue.html">View Catalogue</a>
+    <a href="/librarian/stationery/new">Add Item</a>
+    <a href="/librarian/stationery/edit">Edit Item</a>
+    <a href="/librarian/stationery/destroy">Remove Item</a>
+  </nav>
+
+  <br/>
+  <br/>
+
+  <div class="itemForm">
+<form class="" action="/librarian/stationery" method="post">
+			<p><%=error%></p>
+
+    <h1>Add New Item</h1>
+
+    <div class="container">
+      <label for="id"><b>Item ID</b></label>
+      <br/>
+      <input id="id" type="number" placeholder="ID" name="id" required>
+    </div>
+
+    <div class="container">
+      <label for="name"><b>Item Name</b></label>
+      <br>
+      <input id="name" type="text" placeholder="Name" name="name" required>
+    </div>
+
+		<div class="container">
+      <label for="quantity"><b>Quantity</b></label>
+      <br>
+      <input id="quantity" type="text" placeholder="Quantity" name="quantity" required>
+    </div>
+
+		<div class="container">
+			<label for="description"><b>Description</b></label>
+			<br>
+			<input id="description" type="text" placeholder="Description" name="description" required>
+		</div>
+
+		<div class="container">
+			<label for="quality"><b>Quality</b></label>
+			<br>
+			<input id="quality" type="text" placeholder="Quality" name="quality" required>
+		</div>
+
+		<div class="container">
+      <label for="picture"><b>Image URL</b></label>
+      <br>
+      <input id="picture" type="text" placeholder="URL" name="picture" required>
+    </div>
+
+		<div class="container">
+			<label for="type"><b>Type</b></label>
+			<br>
+			<select name="type">
+					<% types.forEach(function(type){ %>
+						<option value="<%=type.stationary_type_id%>"> <%=type.type_name%></option>
+				<%	}); %>
+			</select>
+		</div>
+
+
+    <br/>
+
+    <button class="button" type="submit" >Add to Catalogue</button>
+</form>
+  </div>
+<% if(success && success.length > 0) { %>
+	<div id="popUp" class="popUp">
+		<div class="popUp-content">
+			<span class="close" onclick="closePopUp()">&times;</span>
+			<p id="popUpMessage"><%=success%></p>
+		</div>
+	</div>
+	<script src="/js/closePopUp.js"></script>
+<% } %>
+</body>

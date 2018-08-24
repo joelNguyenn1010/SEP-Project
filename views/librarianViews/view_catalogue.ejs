@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>View Catalogue</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<header>
+		<img src="UTS_Logo.png" alt="UTS Logo" height="36" width="85">
+		<f>Stationary Management System</f>
+	</header>
+
+	<nav>
+    <a href="view_catalogue.html">View Catalogue</a>
+    <a href="/librarian/stationery/new">Add Item</a>
+    <a href="/librarian/stationery/edit">Edit Item</a>
+    <a href="/librarian/stationery/destroy">Remove Item</a>
+  </nav>
+
+	<h1>Stationary Catalogue</h1>
+
+	<div id="popUp" class="popUp">
+  	<div class="popUp-content">
+    	<span class="close" onclick="closePopUp()">&times;</span>
+    	<p id="popUpMessage">Stand in PopUp Message</p>
+  	</div>
+	</div>
+
+	<script src="/js/closePopUp.js"></script>
+
+</body>
