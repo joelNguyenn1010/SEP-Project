@@ -1,17 +1,11 @@
-<html>
-<head>
-	<title>Edit Item</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
+<% include ../partials/header %>
   <header>
-		<img src="UTS_Logo.png" alt="UTS Logo" height="36" width="85">
+		<img src="/icons/UTS_Logo.png" alt="UTS Logo" height="36" width="85">
 		<f>Stationary Management System</f>
 	</header>
 
 	<nav>
-    <a href="view_catalogue.html">View Catalogue</a>
+    <a href="/librarian/stationary">View Catalogue</a>
     <a href="/librarian/stationery/new">Add Item</a>
     <a href="/librarian/stationery/edit">Edit Item</a>
     <a href="/librarian/stationery/destroy">Remove Item</a>
@@ -20,50 +14,73 @@
   <br/>
   <br/>
 
-  <div class="itemForm">
 
-    <h1>Edit Existing Item</h1>
+	  <div class="itemForm">
+	<form class="" action="/librarian/stationery/update?_method=PUT" method="post">
+				<p><%=error%></p>
 
-    <div class="container">
-      <label for="barcode"><b>Item ID</b></label>
-      <br/>
-      <input id="itemID" type="text" placeholder="ID" name="itemID" required>
-    </div>
+	    <h1>Edit Existing Item</h1>
 
-    <div class="container">
-      <label for="itemName"><b>Item Name</b></label>
-      <br>
-      <input id="itemName" type="text" placeholder="Name" name="itemName" required>
-    </div>
+	    <div class="container">
+	      <label for="id"><b>Item ID</b></label>
+	      <br/>
+	      <input id="id" type="number" placeholder="ID" name="id" required>
+	    </div>
 
-		<div class="container">
-      <label for="itemQuantity"><b>Quantity</b></label>
-      <br>
-      <input id="itemQuantity" type="text" placeholder="Quantity" name="itemQuantity" required>
-    </div>
+	    <div class="container">
+	      <label for="name"><b>Item Name</b></label>
+	      <br>
+	      <input id="name" type="text" placeholder="Name" name="name" required>
+	    </div>
 
-		<div class="container">
-      <label for="itemImage"><b>Image URL</b></label>
-      <br>
-      <input id="itemImage" type="text" placeholder="URL" name="itemImage" required>
-    </div>
+			<div class="container">
+	      <label for="quantity"><b>Quantity</b></label>
+	      <br>
+	      <input id="quantity" type="text" placeholder="Quantity" name="quantity" required>
+	    </div>
 
-    <br/>
-    <br/>
+			<div class="container">
+				<label for="description"><b>Description</b></label>
+				<br>
+				<input id="description" type="text" placeholder="Description" name="description" required>
+			</div>
 
-    <button class="button" type="submit" onclick="editItem()">Edit Item</button>
+			<div class="container">
+				<label for="quality"><b>Quality</b></label>
+				<br>
+				<input id="quality" type="text" placeholder="Quality" name="quality" required>
+			</div>
 
-  </div>
+			<div class="container">
+	      <label for="picture"><b>Image URL</b></label>
+	      <br>
+	      <input id="picture" type="text" placeholder="URL" name="picture" required>
+	    </div>
 
-	<div id="popUp" class="popUp">
-  	<div class="popUp-content">
-    	<span class="close" onclick="closePopUp()">&times;</span>
-    	<p id="popUpMessage">Stand in PopUp Message</p>
-			<br/>
-			<img id="itemImagePopUp" class="center" src="" alt="Invalid Image URL"/>
-  	</div>
-	</div>
+			<div class="container">
+				<label for="type"><b>Type</b></label>
+				<br>
+				<select name="type">
+						<% types.forEach(function(type){ %>
+							<option value="<%=type.stationary_type_id%>"> <%=type.type_name%></option>
+					<%	}); %>
+				</select>
+			</div>
 
-	<script src="closePopUp.js"></script>
-  <script src="editItems.js"></script>
-</body>
+
+	    <br/>
+
+	    <button class="button" type="submit" >Update to Catalogue</button>
+	</form>
+	  </div>
+	<% if(success && success.length > 0) { %>
+		<div id="popUp" class="popUp">
+			<div class="popUp-content">
+				<span class="close" onclick="closePopUp()">&times;</span>
+				<p id="popUpMessage"><%=success%></p>
+			</div>
+		</div>
+		<script src="/js/closePopUp.js"></script>
+	<% } %>
+
+<% include ../partials/footer %>

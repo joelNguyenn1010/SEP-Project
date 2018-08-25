@@ -21,10 +21,12 @@ libMethod.getStationary = function(req, res, next) {
         picture,
         type
       }
+
       return next();
     } else {
-      req.flash('error', 'Something wrong with the stationary');
-      return res.redirect('/librarian/stationery/new');
+      req.flash('error', 'Something wrong with the stationary, please check your inpur or call UTS');
+      return res.redirect('back');
+      // return res.redirect('/librarian/stationery/new');
     }
 }
 

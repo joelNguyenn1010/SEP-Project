@@ -6,6 +6,7 @@ var postgres = require("../database/postgre");
 var auth = require("../middleware/authentication");
 var middleware = require("../middleware/librarian");
 var libMethod = require("../method/librarian");
+var StationerySQL = require("../database/stationery");
 // router.get('/librarian/stationary', auth.isLoggedIn ,function(req,res){
 //   var items = []
 //
@@ -20,6 +21,7 @@ var libMethod = require("../method/librarian");
 //   })
 //
 // });
+
 //LOGIN
 router.post("/librarian/login", auth.authenticate , function(req, res){
   res.redirect("/");
@@ -40,12 +42,14 @@ router.post('/librarian/stationery', middleware.getStationary, function(req, res
   libMethod.addStationary(item.id ,item.name, item.quality, item.quantity, item.description, item.type, item.picture, res, req);
 })
 //STATIONERY - EDIT WITHOUT PARAMS
-router.get('/librarian/stationery/edit', function(req, res){
-  res.render('librarianViews/edit_item');
+router.get('/librarian/stationery/edit', middleware.loadType ,function(req, res){
+
+  res.render('librarianViews/edit_item', {types: req.types});
 });
 
-router.put('/librarian/stationery/update', function(req, res){
-  res.send('connect');
+router.put('/librarian/stationery/update', middleware.getStationary ,function(req, res){
+  var item = req.newItem;
+  libMethod.updateStaionery(item.id ,item.name, item.quality, item.quantity, item.description, item.type, item.picture, res, req);
 });
 //STATIONERY - DESTROY WITHOUT PARAMS
 router.get('/librarian/stationery/destroy', function(req, res){
@@ -64,7 +68,7 @@ router.put('/librarian/stationary/:id', function(req, res){
 
 //STATIONARY INDEX (VIEW ALL ITEM)
 router.get('/librarian/stationary', middleware.loadStationary ,function(req,res){
-  console.log(req.items);
+  res.render('librarianViews/view_catalogue');
   // res.render('librarian/stationery', {items: req.items});
 });
 
