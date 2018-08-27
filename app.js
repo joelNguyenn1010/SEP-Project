@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local');
 var flash = require('connect-flash');
 //
 var staffRouter = require('./routes/librarian');
-var Librarian = require('./models/librarian');
+var Staff = require('./models/staff');
 //
 
 app.set("view engine", "ejs");
@@ -33,9 +33,9 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(Librarian.authenticate()));
-passport.serializeUser(Librarian.serializeUser());
-passport.deserializeUser(Librarian.deserializeUser());
+passport.use(new LocalStrategy(Staff.authenticate()));
+passport.serializeUser(Staff.serializeUser());
+passport.deserializeUser(Staff.deserializeUser());
 
 app.use(function(req, res, next){
    res.locals.currentUser = req.user;
@@ -47,7 +47,7 @@ app.use(function(req, res, next){
 
 
 app.get('/', function(req, res){
-    res.render('landing')
+    res.render('landing');
 });
 
 

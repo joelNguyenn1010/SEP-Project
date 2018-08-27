@@ -1,7 +1,7 @@
 var libraMethod = {};
 var postgre = require('../database/postgre');
 var StationerySQL = require("../database/stationery");
-var schema = new StationerySQL("stationary_id" ,"name", "availability", "quality", "quantity", "purchase_date", "desciption", "type_id", "picture");
+var schema = new StationerySQL("stationary_id" ,"name", "availability", "quality", "quantity", "purchase_date", "description", "type_id", "picture");
 
 
 libraMethod.addStationary = function(id, name, quality, quantity, description, type_id, picture, res, req) {

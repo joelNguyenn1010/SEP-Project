@@ -37,7 +37,29 @@ body {
   margin: 10px auto;
 }
 
-.form-button-error {display: !important;}
+/* VIEW Stationery */
+.stationeries {
+  padding: 0;
+  width: 100px;
+
+
+}
+
+.pictureItem {
+  height: 200px;
+  width: 100%;s
+}
+.pictureItem #itemPicture{
+  height: 100%;
+  width: 100%;
+}
+.box-stationary{
+  margin-top: 50px;
+}
+.details {
+  margin: 0;
+  padding: 5px;
+}
 /* .form-signin .form-control {
     position: relative;
     box-sizing: border-box;

@@ -1,5 +1,7 @@
 var libMethod = {};
 var postgre = require('../database/postgre');
+var StationerySQL = require("../database/stationery");
+var schema = new StationerySQL("stationary_id" ,"name", "availability", "quality", "quantity", "purchase_date", "description", "type_id", "picture");
 
 libMethod.getStationary = function(req, res, next) {
     var id = req.body.id;
@@ -45,7 +47,7 @@ libMethod.loadType = function(req, res, next) {
 }
 
 libMethod.loadStationary = function(req, res, next) {
-  var sql = "SELECT stationary_id,stationary_type_id, type.type_name, stationary.name , quantity, desciption, picture FROM stationary, type WHERE availability = TRUE AND stationary_type_id = type_id"
+  var sql = "SELECT * FROM stationary, type WHERE availability = TRUE AND stationary_type_id = type_id"
   postgre.query(sql, function(err, type){
     if(err) {
       console.log(err);

@@ -50,13 +50,8 @@ a {
   padding-right: 5%;
 }
 
-a:hover {
-  font-weight: bold;
-}
 
-.active {
-  /*text-decoration: underline;*/
-}
+
 
 h1 {
   font-size: 2em;
@@ -64,7 +59,9 @@ h1 {
   padding: 1.8%;
   text-align: center;
 }
-
+nav a {
+  color: white;
+}
 .itemForm {
   width: 40%;
   outline: 3px solid;
@@ -73,7 +70,7 @@ h1 {
   padding-bottom: 1%;
 }
 
-.container {
+.container-input {
   padding: 2%;
 }
 
