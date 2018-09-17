@@ -1,7 +1,7 @@
 var pg = require('pg');
-// var connectionString = process.env.DATABASE_URL || 'postgres://hqjocokp:o2vcQUi4rddw8J1Ac1ixjZC2SapXRwyj@horton.elephantsql.com:5432/hqjocokp';
+var connectionString = process.env.DATABASE_URL || 'postgres://adminSEP:Hoilamcho1010@sep-database.czb5slzfm4vs.ap-southeast-2.rds.amazonaws.com:5432/adminSEP';
 
-var connectionString = require('../config.json').postgreSQL;
+
 var client = new pg.Client(connectionString);
 
 client.connect(function(err) {
