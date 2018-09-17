@@ -1,0 +1,27 @@
+<% include ../partials/header.ejs %>
+
+	<h1>Stationary Catalogue</h1>
+	<!-- Release 1 -->
+	<!-- <form class="" action="index.html" method="post">
+		<input type="text" name="search" value="" placeholder="Search">
+	</form> -->
+
+	<div class="container box-stationary">
+		<div class="row">
+			<% items.forEach(function(item) { %>
+				<div class="col-xs-6 col-md-4 stationeries">
+					<div class="pictureItem">
+						<img id="itemPicture"src="<%=item.picture%>">
+					</div>
+					<div class="details">
+						<h4 class name="name" id="name" ><%=item.name%></h4>
+						<p><strong>Quantity:</strong> <%=item.quantity%> </p>
+						<p><strong>ID:</strong> <%=item.stationary_id%> </p>
+						</div>
+					</div>
+		<%	}); %>
+
+			</div>
+	</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,17 @@
+<% include ../partials/header%>
+<div class="container-box">
+  <div class="wrap">
+    <% if(error) { %>
+      <p style="color: red;"><%=error%></p>
+    <% } %>
+  <h3>Login</h3>
+	<form class="form-signin" action="/librarian/login" method="POST">
+			<input type="text" name="username" class="form-control" placeholder="Student ID" required>
+			<input type="password"  name="password" class="form-control" placeholder="Password" required>
+			<input class="btn btn-lg btn-dark btn-block" type="submit" value="Login">
+	</form>
+    </div>
+</div>
+
+<!-- THE USERNAME IS: 12761767, PASSWORD IS: 12761767 -->
+<% include ../partials/footer %>

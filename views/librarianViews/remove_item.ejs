@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+
+  <div class="itemForm">
+		<p><%=error%></p>
+    <h1>Remove Existing Item</h1>
+
+    <div class="container-input">
+      <label for="id"><b>Item ID</b></label>
+      <br/>
+			<form class="" action="/librarian/stationery/delete?_method=DELETE" method="post">
+				<input id="id" type="text" placeholder="ID" name="id" required>
+
+
+    </div>
+
+    <br/>
+    <br/>
+
+    <button class="button" type="submit" onclick="removeItem()">Remove Item</button>
+</form>
+  </div>
+
+	<% if(success && success.length > 0) { %>
+		<div id="popUp" class="popUp">
+			<div class="popUp-content">
+				<span class="close" onclick="closePopUp()">&times;</span>
+				<p id="popUpMessage"><%=success%></p>
+			</div>
+		</div>
+		<script src="/js/closePopUp.js"></script>
+	<% } %>
+<% include ../partials/footer %>
