@@ -6,6 +6,7 @@ client.connect(function(err) {
   if(err) {
     return console.error('could not connect to  postgres', err);
   }
+  
 		console.log("conect sep-postgresql");
   });
 
