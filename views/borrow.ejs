@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+<header>
+	<img src="/icons/UTS_Logo.png" alt="UTS Logo" height="36" width="85">
+	<f>Stationary Management System</f>
+</header>
+  <br/>
+  <br/>
+
+  <div class="itemForm">
+		<p><%=error%></p>
+    <h1>Borrow Item</h1>
+
+    <!--
+      Here's how I picture the borrow page working:
+        This will be a seperate webpage which will just be displayed on a screen in the library, no mouse or keyboard.
+
+        The user will tap their ID card, a notification will display saying "now tap items to borrow"
+        The user will then scan the barcodes of as many items as they like, as each item is scanned it will appear in a list on the screen
+        To end and confirm the borrow, the user will tap their ID card again. We will need some kind of cancel function though
+
+        Once confirmed, all the items scanned in will be borrowed
+    -->
+
+    <!--
+      I'm happy to do as much as I can to help, but I will need you to show me how you think we can get this to work.
+    -->
+
+    <!--
+      Here's my current logic:
+        User taps ID card in a text input box.
+        This input is then sent to the js file, borrowingProcess
+        borrowingProcess confirms that it is a user ID, otherwise it shows an error sayng "not user ID"
+        If it is a user ID, then the user can continue to now scan in items
+        borrowingProcess will receive each scanned ID, check if it is the user ID again, otherwise the item scanned in and add it to an array of ID's
+        If the scanned item is the userID again, then borrowingProcess will call the confirmBorrow method in borrow.js
+        borrow.js then does the SQL stuff
+      -->
+
+    <div class="container-input">
+      <label><b>Please Tap ID Card and then Scan Barcode of Items. Then Tap ID Card Again to Finish</b></label>
+      <br/>
+				<input id="id" type="text" placeholder="" name="input" required>
+
+    </div>
+
+    <br/>
+    <br/>
+
+    <button class="button" type="submit" onclick="borrowingProcess()">Make This Button Invisible</button>
+</form>
+  </div>
+
+	<% if(success && success.length > 0) { %>
+		<div id="popUp" class="popUp">
+			<div class="popUp-content">
+				<span class="close" onclick="closePopUp()">&times;</span>
+				<p id="popUpMessage"><%=success%></p>
+			</div>
+		</div>
+		<script src="/js/closePopUp.js"></script>
+	<% } %>
+<% include ../partials/footer %>

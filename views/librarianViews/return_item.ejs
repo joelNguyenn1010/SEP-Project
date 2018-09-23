@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+<header>
+	<img src="/icons/UTS_Logo.png" alt="UTS Logo" height="36" width="85">
+	<f>Stationary Management System</f>
+</header>
+
+<nav>
+  <a href="/librarian/stationary">View Catalogue</a>
+  <a href="/librarian/stationery/new">Add Item</a>
+  <a href="/librarian/stationery/edit">Edit Item</a>
+  <a href="/librarian/stationery/destroy">Remove Item</a>
+  <a href="/librarian/stationery/return">Return Items</a>
+</nav>
+
+  <br/>
+  <br/>
+
+  <div class="itemForm">
+		<p><%=error%></p>
+    <h1>Return Item</h1>
+
+    <div class="container-input">
+      <label for="id"><b>Item ID</b></label>
+      <br/>
+			<!--<form class="" action="/librarian/stationery/delete?_method=DELETE" method="post">
+			Need to change this to be return, not delete -->
+				<input id="id" type="text" placeholder="ID" name="id" required>
+
+
+    </div>
+
+    <br/>
+    <br/>
+
+    <button class="button" type="submit" onclick="returnItem()">Return Item</button>
+</form>
+  </div>
+
+	<% if(success && success.length > 0) { %>
+		<div id="popUp" class="popUp">
+			<div class="popUp-content">
+				<span class="close" onclick="closePopUp()">&times;</span>
+				<p id="popUpMessage"><%=success%></p>
+			</div>
+		</div>
+		<script src="/js/closePopUp.js"></script>
+	<% } %>
+<% include ../partials/footer %>

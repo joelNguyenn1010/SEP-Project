@@ -1,5 +1,5 @@
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://postgres:10102001@localhost:5436/sep-database';
+var connectionString = process.env.DATABASE_URL || 'postgres://hqjocokp:o2vcQUi4rddw8J1Ac1ixjZC2SapXRwyj@horton.elephantsql.com:5432/hqjocokp';
 var client = new pg.Client(connectionString);
 
 client.connect(function(err) {
