@@ -1,4 +1,4 @@
 {
-    "postgreSQL": "postgres://hqjocokp:o2vcQUi4rddw8J1Ac1ixjZC2SapXRwyj@horton.elephantsql.com:5432/hqjocokp"
+    "postgreSQL": "postgres://adminSEP:Hoilamcho1010@sep-database.czb5slzfm4vs.ap-southeast-2.rds.amazonaws.com:5432/adminSEP"
 
 }

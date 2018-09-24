@@ -53,10 +53,27 @@ libMethod.loadStationary = function(req, res, next) {
       console.log(err);
       return res.status(500).send('Something wrong with loading stationary, please contact 0423795821');
     } else {
+      console.log(type);
         req.items = type.rows;
         next()
     }
   });
 };
+
+libMethod.getSearch = function(req, res, next) {
+
+  var name = req.body.name.charAt(0).toUpperCase() + req.body.name.slice(1);
+  var searchID = "OR CAST(stationary_id AS text) LIKE '"+name+"%'";
+  var searchDate = " OR CAST(purchase_date AS text) LIKE '%"+name+"%'";
+  var sql = "SELECT * FROM stationary WHERE name LIKE '"+name+"%'" + searchID + searchDate;
+  postgre.query(sql,function(err, result){
+    if(err) { console.log(err); } 
+    else if(result.rows.length > 0) {
+    return res.render('librarianViews/search_item.ejs', {items: result.rows});
+  } else {
+    return res.render('librarianViews/search_item.ejs', {items: []});
+  }
+  });
+}
 
 module.exports = libMethod;

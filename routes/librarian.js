@@ -74,10 +74,14 @@ router.get('/librarian/stationary',auth.isLoggedIn, middleware.loadStationary ,f
 });
 
 //STATIONARY Search
-router.get('/librarian/stationary/search',auth.isLoggedIn, middleware.loadStationary ,function(req,res){
-  res.render('librarianViews/view_catalogue', {items : req.items});
-  // res.render('librarian/stationery', {items: req.items});
+router.get('/librarian/stationery/search', function(req,res) {
+  res.render('librarianViews/search_item', {items: [] });
 });
+router.post('/search', middleware.getSearch ,function(req, res){
+  
+});
+
+
 
 // register Librarian OUT OF SCOPE
 // router.get('/librarian/register', function(req, res){

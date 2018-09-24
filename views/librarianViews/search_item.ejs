@@ -1,0 +1,42 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+
+<form action="/search" method="post">
+<div class="input-group mb-3">
+  <input type="text" class="mt-0 form-control" name="name" placeholder="Stationery" aria-label="Username" aria-describedby="basic-addon1">
+  <input class="btn btn-dark" value="Search" type="submit">
+</div>
+</form>
+<% if(items && items.length > 0){ %>
+<div class="container box-stationary">
+<div class="row">
+
+<% items.forEach(function(item) { %>
+<div class="col-xs-6 col-md-4 stationeries">
+    <div class="pictureItem">
+        <img id="itemPicture"src="<%=item.picture%>">
+    </div>
+    <div class="details">
+        <h4 class name="name" id="name" ><%=item.name%></h4>
+        <p><strong>Quantity:</strong> <%=item.quantity%> </p>
+        <p><strong>ID:</strong> <%=item.stationary_id%> </p>
+        </div>
+    </div>
+<%	}); %>
+
+
+
+</div>
+</div>
+
+<% } else { %> 
+    <p class="mx-auto" >No Result</p>
+
+
+    <form action="/testing" method="post">
+    <textarea name="test" rows="4" cols="50"></textarea>
+    <input type="submit" value="submit">
+    </form>
+
+<% } %>
+<% include ../partials/footer %>

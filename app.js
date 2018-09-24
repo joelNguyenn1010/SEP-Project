@@ -44,7 +44,13 @@ app.use(function(req, res, next){
    next();
 });
 
-
+app.post("/testing", function(req, res){
+    var arr = [];
+    // var spli = "\r\" 
+    arr.push(req.body.test.split('\r'));
+    console.log(arr);
+    
+});
 
 app.get('/', function(req, res){
     res.render('landing');
