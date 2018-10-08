@@ -1,0 +1,16 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+
+<p><%=error%></p>
+<h1>Quick Borrow</h1>
+<div class="container">
+<form class="form-group" action="/librarian/quick-borrow" method="post">
+<textarea class="form-control" name="items" placeholder="Item ID" rows="10" cols="50" required onkeydown="javascript: return event.keyCode == 32 ? false : true" ></textarea>
+<input class="form-control" type="password" name="card" placeholder="Card ID" required>
+<input class="form-control" type="submit" value="submit">
+</form>
+</div>
+
+
+<script src="/js/reservation.js"></script>
+<% include ../partials/footer %>

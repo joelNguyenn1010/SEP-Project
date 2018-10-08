@@ -1,0 +1,31 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+
+<% if(error && error.length > 0) { %>
+    <p><%=error%></p>
+<%} %>
+
+<% if(success && success.length > 0) { %>
+    <p><%=success%></p>
+<%} %>
+<h1>Quick Return</h1>
+<form class="form-group" action="/librarian/stationery/quick-return" method="post">
+<input type="password" name="card" required>
+<input type="submit" value="submit">
+</form>
+
+
+<% if(reservate) { %>
+  <%  reservate.forEach((r)=>{ %>
+        <p><%=r.stationary_stationary_id%> have <%= r.count %> on <%= r.reservation_day.getFullYear()%>-<%=r.reservation_day.getMonth()%>-<%=r.reservation_day.getDate() %> </p>
+        <form action="/librarian/stationery/quick-return?_method=PUT" method="POST">
+            <input type="hidden" name="date" value="<%=r.reservation_day.getFullYear()%>-<%=('0'+(r.reservation_day.getMonth()+1)).slice(-2)%>-<%=('0'+r.reservation_day.getDate()).slice(-2) %>">
+            <input type="text" name="cardReturn" placeholder="Card">
+            <input type="hidden" name="idcheck" value="<%=r.stationary_stationary_id%>">
+            <input type="text" name="itemID" placeholder="Item ID">
+            <input type="submit" value="submit">
+        </form>
+    <% }) %>
+<% } %>
+<script src="/js/reservation.js"></script>
+<% include ../partials/footer %>

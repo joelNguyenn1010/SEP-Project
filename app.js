@@ -7,6 +7,8 @@ var publicDir = require('path').join(__dirname,'/assets');
 var session = require("express-session");
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
+var globalMethod = require('./middleware/postgre');
+
 
 var flash = require('connect-flash');
 //
@@ -39,17 +41,24 @@ passport.deserializeUser(Staff.deserializeUser());
 
 app.use(function(req, res, next){
    res.locals.currentUser = req.user;
+   res.locals.session = req.session;
    res.locals.error = req.flash("error");
    res.locals.success = req.flash("success");
+
+
    next();
 });
 
-app.post("/testing", function(req, res){
-    var arr = [];
-    // var spli = "\r\" 
-    arr.push(req.body.test.split('\r'));
-    console.log(arr);
+app.use(function(req, res, next){
+    globalMethod.checkingAvailability(req, res, next);
+
+    var today = new Date();
+    var dd =("0" + today.getDate()).slice(-2)
+    var mm =("0" + (today.getMonth() + 1)).slice(-2)
+    var yyyy = today.getFullYear();
+res.locals.currentDay = yyyy+"-"+mm+"-"+dd;
     
+    next();
 });
 
 app.get('/', function(req, res){

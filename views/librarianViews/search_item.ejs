@@ -1,42 +1,84 @@
 <% include ../partials/header.ejs %>
 <% include ../partials/navbar.ejs %>
-
+<div class="container mt-5">
 <form action="/search" method="post">
-<div class="input-group mb-3">
-  <input type="text" class="mt-0 form-control" name="name" placeholder="Stationery" aria-label="Username" aria-describedby="basic-addon1">
-  <input class="btn btn-dark" value="Search" type="submit">
-</div>
+    <div class="input-group mb-3">
+        <input type="text" class="mt-0 form-control" name="name" placeholder="Stationery" aria-label="Username"
+            aria-describedby="basic-addon1">
+        <input class="btn btn-dark" value="Search" type="submit">
+    </div>
 </form>
+</div>
 <% if(items && items.length > 0){ %>
 <div class="container box-stationary">
-<div class="row">
+    <div class="row">
 
-<% items.forEach(function(item) { %>
-<div class="col-xs-6 col-md-4 stationeries">
-    <div class="pictureItem">
-        <img id="itemPicture"src="<%=item.picture%>">
-    </div>
-    <div class="details">
-        <h4 class name="name" id="name" ><%=item.name%></h4>
-        <p><strong>Quantity:</strong> <%=item.quantity%> </p>
-        <p><strong>ID:</strong> <%=item.stationary_id%> </p>
+        <% items.forEach(function(item) { %>
+        <div class="col-xs-6 col-md-4 stationeries mb-4">
+            <div class="pictureItem">
+                <img id="itemPicture" src="<%=item.picture%>">
+            </div>
+            <div class="details">
+                <h4 class name="name" id="name">
+                    <%=item.name%>
+                </h4>
+                <p><strong>Quantity:</strong>
+                    <%=item.quantity%>
+                </p>
+                <p><strong>ID:</strong>
+                    <%=item.stationary_id%>
+                </p>
+            </div>
+            <% if(item.quantity > 0) { %>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#reservateModal<%=item.stationary_id%>">
+                    Reservate
+                </button>
+        
+                <!-- Modal -->
+                <div class="modal fade" id="reservateModal<%=item.stationary_id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Reservate</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+        
+                                <form action="/librarian/online-reservate" method="post">
+                                    <input type="number" min="1" max="<%=item.quantity%>" required>
+                                    <input type="hidden" name="items" value="<%=item.stationary_id%>">
+                                    <input type="date" name="date" required min="<%=currentDay%>">
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Reservate">
+                                </form>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <% } %>
         </div>
+
+ 
+
+
+        <%	}); %>
+
+
+
     </div>
-<%	}); %>
-
-
-
-</div>
 </div>
 
-<% } else { %> 
-    <p class="mx-auto" >No Result</p>
+<% } else { %>
+<p class="mx-auto">No Result</p>
 
 
-    <form action="/testing" method="post">
-    <textarea name="test" rows="4" cols="50"></textarea>
-    <input type="submit" value="submit">
-    </form>
 
 <% } %>
 <% include ../partials/footer %>
