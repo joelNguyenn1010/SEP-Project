@@ -20,15 +20,15 @@
 			<div class="details">
 				<h4 class name="name" id="name">
 					<%=item.name%>
-				</h4>
-				<p><strong>Quantity:</strong>
-					<%=item.quantity%>
 				</p>
-				<p><strong>ID:</strong>
+
+				 <!-- Quamtity of type -->
+
+				<!-- <p><strong>ID:</strong>
 					<%=item.stationary_id%>
-				</p>
+				</p> -->
 				<button class="btn btn-primary" data-toggle="modal" data-target="#reservateModal<%=item.stationary_id%>">
-					Reservate
+					Reserve
 				</button>
 
 				<!-- Modal -->
@@ -51,7 +51,7 @@
 							</div>
 							
 							<div class="modal-footer">
-								<input type="submit" class="btn btn-primary" value="Reservate">
+								<input type="submit" class="btn btn-primary" value="Reserve">
 								</form>
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 

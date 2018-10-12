@@ -8,44 +8,15 @@
     <h1>Add New Item</h1>
 
     <div class="container-input">
-      <label for="id"><b>Item ID</b></label>
+      <label for="id"><b>Item Barcode</b></label>
       <br/>
-      <input id="id" type="number" placeholder="ID" name="id" required>
-    </div>
-
-    <div class="container-input">
-      <label for="name"><b>Item Name</b></label>
-      <br>
-      <input id="name" type="text" placeholder="Name" name="name" required>
-    </div>
-
-		<div class="container-input">
-      <label for="quantity"><b>Quantity</b></label>
-      <br>
-      <input id="quantity" type="text" placeholder="Quantity" name="quantity" required>
-    </div>
-
-		<div class="container-input">
-			<label for="description"><b>Description</b></label>
-			<br>
-			<input id="description" type="text" placeholder="Description" name="description" required>
+      <input id="id" type="number" placeholder="Barcode" name="id" required>
 		</div>
-
+		
 		<div class="container-input">
-			<label for="quality"><b>Quality</b></label>
+			<label for="type"><b>Item Type</b></label>
 			<br>
-			<input id="quality" type="text" placeholder="Quality" name="quality" required>
-		</div>
-
-		<div class="container-input">
-      <label for="picture"><b>Image URL</b></label>
-      <br>
-      <input id="picture" type="text" placeholder="URL" name="picture" required>
-    </div>
-
-		<div class="container-input">
-			<label for="type"><b>Type</b></label>
-			<br>
+			<!-- <input id="type" type="text" placeholder="Item Type" name="type_id" required> -->
 			<select name="type">
 					<% types.forEach(function(type){ %>
 						<option value="<%=type.type_id%>"> <%=type.name%></option>
@@ -53,6 +24,35 @@
 			</select>
 		</div>
 
+    <!-- <div class="container-input"> -->
+      <!-- <label for="name"><b>Item Name</b></label>
+      <br> -->
+      <input id="name" type="hidden" placeholder="Name" value="-" name="name" required>
+    <!-- </div> -->
+
+		<!-- <div class="container-input"> -->
+      <!-- <label for="quantity"><b>Quantity</b></label>
+      <br> -->
+      <input id="quantity" type="hidden" value="1" placeholder="Quantity" name="quantity" required>
+    <!-- </div> -->
+
+		<!-- <div class="container-input"> -->
+			<!-- <label for="description"><b>Description</b></label>
+			<br> -->
+			<input id="description" type="hidden" value="-" placeholder="Description" name="description" required>
+		<!-- </div> -->
+
+		<!-- <div class="container-input"> -->
+			<!-- <label for="quality"><b>Quality</b></label>
+			<br> -->
+			<input id="quality" type="hidden" value="-" placeholder="Quality" name="quality" required>
+		<!-- </div> -->
+
+		<div class="container-input">
+      <label for="picture"><b>Image URL</b></label>
+      <br>
+      <input id="picture" type="text" placeholder="URL" name="picture" required>
+    </div>
 
     <br/>
 
