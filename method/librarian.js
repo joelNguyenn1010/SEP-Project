@@ -18,10 +18,13 @@ libraMethod.addStationary = function(id, name, quality, quantity, description, t
 };
 
 libraMethod.deleteStationery = function(id, req, res) {
+
+  checkReservation(id);
+
   var sql = `DELETE FROM stationary WHERE ${schema.id} = $1`
   postgre.query(sql, [id], function(err, success){
     if(err) {
-      req.flash("error", err.message);
+      req.flash("error", "Error occur, You can't remove this item");
     } else if(success.rowCount === 0){
       req.flash("error", "Can't find the ID in the data, please try again")
     } else {
@@ -30,6 +33,17 @@ libraMethod.deleteStationery = function(id, req, res) {
     res.redirect('back');
   });
 };
+
+var checkReservation = (id) => {
+  var sql = `DELETE FROM reservation WHERE stationary_stationary_id = $1`
+  postgre.query(sql, [id], function(err, succes){
+    if(err) {
+      req.flash("error", "Error occur, You can't remove this item");
+      return res.redirect('Back');
+    } else {
+    }
+  })
+}
 
 libraMethod.updateStaionery = function(id, name, quality, quantity, description, type_id, picture, res, req) {
   var sql = `UPDATE stationary SET ${schema.name} = $1, ${schema.quality} = $2, ${schema.quantity} = $3, ${schema.description} = $4, ${schema.type_id} = $5, ${schema.picture} = $6 WHERE ${schema.id} = $7`

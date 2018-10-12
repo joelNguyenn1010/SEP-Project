@@ -1,0 +1,72 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+<div class="container text-center mt-5">
+    <% if(error && error.length > 0) { %>
+    <p>
+        <%=error%>
+    </p>
+    <%} %>
+
+    <% if(success && success.length > 0) { %>
+    <p>
+        <%=success%>
+    </p>
+    <%} %>
+
+</div>
+<h1>My Reservation</h1>
+
+
+<% if(reservate) { %>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Stationary ID</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Reservation day</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%  reservate.forEach((r)=>{ %>
+
+            <tr>
+                <td>
+                    <%=r.stationary_stationary_id%>
+                </td>
+                <td>
+                    <%= r.quantity %>
+                </td>
+                <td>
+                    <%= r.reservation_day.getFullYear()%>-
+                    <%=r.reservation_day.getMonth()%>-
+                    <%=r.reservation_day.getDate() %>
+                </td>
+                
+                <td>
+                       <%=r.is_returned%>
+                    </td>
+
+            </tr>
+
+       
+
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+<% } %>
+
+
+
+<script src="/js/reservation.js"></script>
+<% include ../partials/footer %>

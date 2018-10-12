@@ -31,6 +31,12 @@ router.post("/librarian/login", auth.authenticate, function (req, res) {
 router.get('/librarian/login', function (req, res) {
   res.render('librarian/login');
 });
+
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 //STAIONARY - ADD
 router.get("/librarian/stationery/new", auth.isLoggedIn, middleware.loadType, function (req, res) {
   // res.render('librarian/Add_Item.ejs', {types : req.types});
@@ -54,7 +60,7 @@ router.put('/librarian/stationery/update', auth.isLoggedIn, middleware.getStatio
 });
 //STATIONERY - DESTROY WITHOUT PARAMS
 router.get('/librarian/stationery/destroy', auth.isLoggedIn, function (req, res) {
-  res.render('librarianViews/remove_item')
+  res.render('librarianViews/remove_item');
 });
 
 router.delete('/librarian/stationery/delete', auth.isLoggedIn, function (req, res) {
@@ -92,6 +98,7 @@ router.post('/librarian/quick-borrow', middleware.checkQty, middleware.checkingC
   res.redirect('back');
 });
 
+
 //RESERVATE ONLINE
 router.post('/librarian/online-reservate', middleware.checkQty, middleware.reservationOnline, function (req, res) {
   res.redirect('back');
@@ -99,6 +106,7 @@ router.post('/librarian/online-reservate', middleware.checkQty, middleware.reser
 
 //Quick Return
 router.get('/librarian/stationery/quick-return', function (req, res) {
+  req.flash('success','')
   res.render('librarianViews/quickReturn.ejs', { reservate: [] });
 });
 
@@ -112,8 +120,9 @@ router.put('/librarian/stationery/quick-return', middleware.returnAllStaionary, 
 
 
 //MY ACCOUNT
-router.get('/account', (req, res)=>{
-  res.render('librarianViews/myAccount.ejs');
+router.get('/account', auth.isLoggedIn,middleware.myReservation ,(req, res)=>{
+  console.log(req.r);
+  res.render('librarianViews/my_reservation', {reservate: req.r});
 });
 
 // register Librarian OUT OF SCOPE

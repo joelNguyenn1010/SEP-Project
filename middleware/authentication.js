@@ -4,7 +4,7 @@ auth.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash("error", "You need to be logged in as librarian");
+    req.flash("error", "You need to be logged");
     res.redirect("/librarian/login");
 }
 

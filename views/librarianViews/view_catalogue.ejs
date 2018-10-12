@@ -45,10 +45,11 @@
 							<div class="modal-body">
 
 								<form action="/librarian/online-reservate" method="post">
-									<input type="number" min="1" max="<%=item.quantity%>" required>
+									<input type="number" min="1" max="<%=item.quantity%>" name="quantity" required>
 									<input type="hidden" name="items" value="<%=item.stationary_id%>">
 									<input type="date" name="date" required min="<%=currentDay%>">
 							</div>
+							
 							<div class="modal-footer">
 								<input type="submit" class="btn btn-primary" value="Reservate">
 								</form>
