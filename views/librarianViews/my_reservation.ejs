@@ -1,0 +1,66 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+<div class="container text-center mt-5">
+    <% if(error && error.length > 0) { %>
+    <p>
+        <%=error%>
+    </p>
+    <%} %>
+
+    <% if(success && success.length > 0) { %>
+    <p>
+        <%=success%>
+    </p>
+    <%} %>
+
+</div>
+<h1 class="text-center">My Reservation</h1>
+
+
+<% if(reservate) { %>
+<div class="container">
+    <% reservate.forEach((r)=>{ %>
+
+
+    <div class="row mt-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+            <div class="card rounded shadow">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-4 col-sm-4">
+                            <div style="width:90%; height:100%;">
+                                <img src="<%=r.picture%>" class="img-rounded img-thumbnail">
+                            </div>
+                        </div>
+                        <div class="col-log-8 col-8 col-sm-8">
+                            <div>
+                                <h1 class="card-title"><%=  r.name %></h1>
+                                <h5 class="align-text-bottom ">ID: <%=  r.stationary_stationary_id %></h5>
+                                <h5 class="align-text-bottom ">Return: <%=  r.is_returned %></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <% }) %>
+</div>
+
+
+
+
+
+
+
+
+<% } %>
+
+
+
+<script src="/js/reservation.js"></script>
+<% include ../partials/footer %>

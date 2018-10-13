@@ -1,0 +1,42 @@
+
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+
+<div class="container mt-5">
+	<form class="form-group" action="/librarian/stationery/update?_method=PUT" method="post">
+		<div>
+				<p class="text-danger text-center">
+						<%=error%>
+				</p>
+
+				<p class="text-success text-center">
+					<%= success %>
+				</p>
+		</div>
+
+
+		<h1 class="text-center">Edit Item</h1>
+
+		<div class="form-group mt-5">
+			<label for="id"><h5>Item ID</h5></label>
+
+			<input id="id" type="number" class="form-control" placeholder="ID" name="id" required>
+		</div>
+
+		<div class="form-group mt-5">
+			<label for="name"><h5>Item Type</h5></label>
+			<input id="name" type="text"  class="form-control" placeholder="Name" name="name" required>
+		</div>
+
+		<div class="form-group mt-5">
+			<label for="picture"><h5>Image URL</h5></label>
+			<input id="picture" type="text" class="form-control" placeholder="URL" name="picture" required>
+		</div>
+
+
+
+		<button class="btn btn-outline-primary" type="submit">Update</button>
+	</form>
+</div>
+
+<% include ../partials/footer %>

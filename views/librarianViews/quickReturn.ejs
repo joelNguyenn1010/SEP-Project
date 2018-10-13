@@ -1,0 +1,103 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+<div class="container text-center mt-5">
+		<div>
+				<p class="text-danger text-center">
+						<%=error%>
+				</p>
+
+				<p class="text-success text-center">
+					<%= success %>
+				</p>
+		</div>
+
+</div>
+<h1 class="text-center">Quick Return</h1>
+<div class="container">
+    <form class="form-group" action="/librarian/stationery/quick-return" method="post">
+        <input type="password" class="form-control" placeholder="Card ID" name="card" required>
+        <input style="display: none;" type="submit" value="submit">
+    </form>
+</div>
+
+<% if(reservate && reservate.length >0 ) { %>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Stationary ID</th>
+                <th scope="col">Reservation day</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%  reservate.forEach((r)=>{ %>
+
+            <tr>
+                <td>
+                    <%=r.stationary_stationary_id%>
+                </td>
+
+                <td>
+                    <%= r.reservation_day.getFullYear()%>-
+                    <%=r.reservation_day.getMonth()%>-
+                    <%=r.reservation_day.getDate() %>
+                </td>
+                <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#reservateModal<%=r.stationary_stationary_id%>">
+                                Return
+                            </button>
+
+   
+            </td>
+            </tr>
+
+                <!-- Modal -->
+    <div class="modal fade" id="reservateModal<%=r.stationary_stationary_id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+                       <div class="modal-body">
+                        <p>To return, Please scan the item that match this ID <%= r.stationary_stationary_id %> </p>                      
+                        <form action="/librarian/stationery/quick-return?_method=PUT" method="POST">
+                            <input type="hidden" name="date" value="<%=r.reservation_day.getFullYear()%>-<%=('0'+(r.reservation_day.getMonth()+1)).slice(-2)%>-<%=('0'+r.reservation_day.getDate()).slice(-2) %>">
+                            <input type="hidden" name="userid" value="<%= r.staff_account_id %>">
+                            <input type="hidden"  name="quantity" value="<%=r.quantity%>" >
+                            <input type="hidden"  name="reservate_id" value="<%=r.reservation_id%>" >
+
+                            <input type="hidden" name="idcheck" value="<%=r.stationary_stationary_id%>">
+                            <input type="text" class="form-control" name="itemID" placeholder="Item id">
+                           
+                        </form>
+                    </div>
+                       
+      
+                   </div>
+               </div>
+           </div>
+       
+       
+
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<% } else { %>
+    <div class="container mt-5">
+            <h1 class="text-center">
+                Empty
+            </h1>
+    
+        </div>
+
+    <% } %>
+
+
+<script src="/js/reservation.js"></script>
+<% include ../partials/footer %>

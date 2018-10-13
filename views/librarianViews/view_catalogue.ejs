@@ -1,0 +1,75 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/navbar.ejs %>
+
+<!-- Release 1 -->
+<!-- <form class="" action="index.html" method="post">
+		<input type="text" name="search" value="" placeholder="Search">
+	</form> -->
+	<div class="container mt-5">
+			<p class="text-danger text-center">
+					<%=error%>
+			</p>
+
+			<p class="text-success text-center">
+				<%= success %>
+			</p>
+	</div>
+
+    <h1 class="text-center mt-5 mb-5">View Catalogue</h1>
+
+<div class="container">
+	<div class="row">
+		<% items.forEach(function(item) { %>
+		<% if(item.availability == true) { %>
+		<div class="col-xs-6 col-md-4 stationeries mb-4 card p-3">
+			<div class="pictureItem">
+				<img id="itemPicture" src="<%=item.picture%>">
+			</div>
+			<div class="details">
+				<h4 class name="name" id="name">
+					<%=item.name%>
+				</h4>
+				<p><strong>ID:</strong>
+					<%=item.stationary_id%>
+				</p>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#reservateModal<%=item.stationary_id%>">
+					Reservate
+				</button>
+
+				<!-- Modal -->
+				<div class="modal fade" id="reservateModal<%=item.stationary_id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				 aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+
+								<form action="/librarian/online-reservate" method="post">
+									<p>Please input the ID (<%=item.stationary_id%>) to reservate this stationery</p>
+									<input type="text" name="items" class="form-control" placeholder="ID" required>
+							</div>
+
+							<div class="modal-footer">
+								<input type="submit" class="btn btn-primary" value="Reservate">
+								</form>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<% } %>
+		<%	}); %>
+
+	</div>
+</div>
+
+<% include ../partials/footer %>
