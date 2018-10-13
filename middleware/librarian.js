@@ -1,7 +1,6 @@
 const libMethod = {};
 const postgre = require('../database/postgre');
 const { promisify } = require('util');
-
 //ADD NEW STATIONARY TO DATABASE (NEW)
 libMethod.addStationary = function (req, res, next) {
   const sql = `INSERT INTO stationary (stationary_id, name, availability, purchase_date, picture) VALUES ($1, $2, TRUE, now(), $3)`
@@ -162,11 +161,11 @@ libMethod.checkingItemID = (req, res, next) => {
 
 //count duplicate when user input in quick borrow
 function count(array_elements, callback) {
-  const temp = [];
+  let temp = [];
   array_elements.sort();
-  const current = null;
-  const cnt = 0;
-  for (const i = 0; i < array_elements.length; i++) {
+  let current = null;
+  let cnt = 0;
+  for (let i = 0; i < array_elements.length; i++) {
     if (array_elements[i] != current) {
       if (cnt > 0) {
         temp.push({
@@ -193,9 +192,10 @@ function count(array_elements, callback) {
 libMethod.quickBorrow = function (req, res, next) {
   const sql = "INSERT INTO reservation (reservation_day, staff_account_id, stationary_stationary_id, quantity) VALUES (now(), $1, $2, $3)"
   const user = req.id;
-  const items = req.body.items.split('\r\n');
-  const checking = compressArray(items);
+  var items = req.body.items.split('\r\n');
+  var checking = compressArray(items);
   count(items, (items) => {
+    console.log(items);
     items.forEach((item) => {
       if (item.current && item.current.length > 0) {
         postgre.query(sql, [`${user}`, item.current, item.cnt], function (err, result) {
@@ -408,18 +408,18 @@ function returnDatabase(req, res, next) {
 }
 
 function compressArray(original) {
-  const compressed = [];
-  const copy = original.slice();
-  for (const i = 0; i < original.length; i++) {
-    const myCount = 0;
-    for (const w = 0; w < copy.length; w++) {
+  let compressed = [];
+  let copy = original.slice();
+  for (let i = 0; i < original.length; i++) {
+    let myCount = 0;
+    for (let w = 0; w < copy.length; w++) {
       if (original[i] == copy[w]) {
         myCount++;
         delete copy[w];
       }
     }
     if (myCount > 0) {
-      const a = {};
+      let a = {};
       a.value = original[i];
       a.count = myCount;
       compressed.push(a);
