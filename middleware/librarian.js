@@ -188,7 +188,6 @@ function count(array_elements, callback) {
   callback(temp);
 }
 
-
 libMethod.quickBorrow = function (req, res, next) {
   const sql = "INSERT INTO reservation (reservation_day, staff_account_id, stationary_stationary_id, quantity) VALUES (now(), $1, $2, $3)"
   const user = req.id;
