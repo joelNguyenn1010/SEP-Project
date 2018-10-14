@@ -80,7 +80,7 @@ router.get('/librarian/stationery/quick-borrow', function (req, res) {
 
 router.post('/librarian/quick-borrow', middleware.checkingCard, middleware.quickBorrow ,function (req, res) {
   req.flash('success', "Success");
-  res.end();
+
   res.redirect('/librarian/stationery/quick-borrow');
 });
 

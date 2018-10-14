@@ -35,14 +35,19 @@
         </li>
 
 
-      <% } %>
+      <% } else { %>
 
 
       <li class="nav-item active mr-5">
         <a class="nav-link " href="/librarian/stationery/search">Search Item</a>
       </li>
-
-
+      <li class="nav-item active mr-5">
+        <a class="nav-link" href="/librarian/stationery/quick-borrow">Quick Borrow</a>
+      </li>
+      <li class="nav-item active mr-5">
+        <a class="nav-link" href="/librarian/stationery/quick-return">Quick Return</a>
+      </li>
+      <% } %>
       <%if(currentUser) {%>
       <li class="nav-item mr-5 active">
         <a class="nav-link" href="/logout">Logout</a>
