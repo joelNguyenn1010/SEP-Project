@@ -78,8 +78,8 @@ router.get('/librarian/stationery/quick-borrow', function (req, res) {
   res.render('librarianViews/quickBorrow.ejs');
 });
 
-router.post('/librarian/quick-borrow', middleware.checkingCard, middleware.quickBorrow ,function (req, res) {
-
+router.post('/librarian/quick-borrow' ,function (req, res) {
+  res.send('connect');
 });
 
 
