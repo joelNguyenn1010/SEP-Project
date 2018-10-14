@@ -194,7 +194,6 @@ libMethod.quickBorrow = function (req, res, next) {
   var items = req.body.items.split('\r\n');
   var checking = compressArray(items);
   count(items, (items) => {
-    console.log(items);
     items.forEach((item) => {
       if (item.current && item.current.length > 0) {
         postgre.query(sql, [`${user}`, item.current, item.cnt], function (err, result) {
@@ -207,7 +206,8 @@ libMethod.quickBorrow = function (req, res, next) {
 
     })
   });
-  next();
+  req.flash('success', "Success");
+  return res.redirect('/librarian/stationery/quick-borrow');
 
 };
 
