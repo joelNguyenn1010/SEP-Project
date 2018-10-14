@@ -46,10 +46,6 @@ router.delete('/librarian/stationery/delete', auth.isLoggedIn, middleware.delete
 });
 
 
-//STATIONERY - EDIT KNOW PARAMS
-router.put('/librarian/stationary/:id', function (req, res) {
-  res.send('connect');
-});
 
 
 //STATIONARY INDEX (VIEW ALL STATIONERIES)

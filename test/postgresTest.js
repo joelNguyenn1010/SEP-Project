@@ -1,27 +1,34 @@
-const chai = require('chai');
-const should = chai.should();
+var chai = require('chai');
+var should = chai.should();
+var server = require('../app.js')
+var chaiHttp = require('chai-http');
+chai.should()
+chai.use(chaiHttp)
 
 
-var request = {};
-var response = {
-    viewName: ""
-    , data : {}
-    , render: function(view, viewData) {
-        viewName = view;
-        data = viewData;
-    }
-};
+describe('Router', () => {
+  it('it should have json type', () => {
+    return chai.request(server)
+      .get('/')
+      .then(res => {
+        res.should.not.have.json
+        // add more tests here as you see fit
+      })
+      .catch(err => {
+         throw err
+      })
+  })
 
-describe("Routing", function(){
-    describe("Default Route", function(){
-        it("should provide the a title and the index view name", function(){
-        routes.index(request, response);
-        response.viewName.should.equal("index");
-        });
-
-    });
+  it('it should not login', () =>{
+    return chai.request(server)
+    .get("/librarian/login")
+    .send({ username: '123', password: '123' })
+    .end(function (err, res) {
+       expect(err).to.be.null
+       expect(res).to.have.status(200)
+  })
 });
-
+});
 
 describe("Librarian Router", function(){
   context('Render View', function() {
