@@ -1,7 +1,26 @@
 const chai = require('chai');
 const should = chai.should();
-const sinon = require('sinon');
-const proxyquire = require('proxyquire');
+
+
+var request = {};
+var response = {
+    viewName: ""
+    , data : {}
+    , render: function(view, viewData) {
+        viewName = view;
+        data = viewData;
+    }
+};
+
+describe("Routing", function(){
+    describe("Default Route", function(){
+        it("should provide the a title and the index view name", function(){
+        routes.index(request, response);
+        response.viewName.should.equal("index");
+        });
+
+    });
+});
 
 
 describe("Librarian Router", function(){
@@ -19,14 +38,3 @@ describe("Librarian Router", function(){
 
 })
 
-describe("Middleware", function() {
-    const debugStub = function() {
-      return sinon.stub();
-    }
-    let middleware;
-     before(function(){
-      middleware = proxyquire("../middleware/librarian.js", {
-         debug: debugStub
-       });
-     });
-});
