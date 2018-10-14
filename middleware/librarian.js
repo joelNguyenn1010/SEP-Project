@@ -31,7 +31,7 @@ libMethod.updateStaionery = function (req, res, next) {
   });
 };
 
-//DELETE STATIONARY
+//DELETE STATIONARY FROM DATABASE (DESTROY)
 libMethod.deleteDependancy = (req, res, next) => {
   const sql = `DELETE FROM reservation WHERE stationary_stationary_id = $1`
   postgre.query(sql, [req.body.id], (err, result) => {
@@ -58,6 +58,7 @@ libMethod.deleteStationery = (req, res, next) => {
     return res.redirect('/librarian/stationery/destroy');
   });
 }
+///---END---///
 
 //LOADING ALL TYPE FROM STATIONARY (INDEX)
 libMethod.loadType = function (req, res, next) {
