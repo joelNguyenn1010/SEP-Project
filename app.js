@@ -62,6 +62,3 @@ app.get('/', function(req, res){
 app.use(staffRouter);
 
 module.exports = app;
-// app.listen(3607, function(){
-//     console.log('Connect to SEP');
-// });
