@@ -277,10 +277,8 @@ libMethod.myReservation = (req, res, next) => {
 libMethod.getALLreservation = function (req, res, next) {
 
   pullStaffId(req.body.card, (err, id) => {
-    console.log(err);
     if (err) {
       req.flash('error', "Error occur, Card is not valid");
-      res.end();
       res.redirect('/librarian/stationery/quick-return');
     } else if (id) {
       findStaffReservation(id.id, (err, result) => {
@@ -290,7 +288,6 @@ libMethod.getALLreservation = function (req, res, next) {
           return res.render('error/500.ejs');
         }
         else {
-
           return res.render('librarianViews/quickReturn.ejs', { reservate: result.rows });
         }
       });
